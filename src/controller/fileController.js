@@ -12,6 +12,7 @@ export const uploadFile = async (req, res) => {
   let resourceUrl;
   const { id } = req.user;
 
+  //streaming file content to s3 using busboy
   busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
     if (mimetype !== "application/pdf") {
       return res.status(400).send({ error: "Only PDF files are allowed." });
